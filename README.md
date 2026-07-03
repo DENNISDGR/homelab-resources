@@ -97,4 +97,4 @@ homelab/
 └── scripts/         # Backup & maintenance automation
 ```
 
-Each service folder will contains `docker-compose.yml`, a `.env.example` with placeholders wherever aplicable, and a README covering instructions and quirks.
+Each service folder will contain a `docker-compose.yml`, a `.env.example` with placeholders wherever applicable, and a README covering instructions and quirks.
