@@ -1,0 +1,48 @@
+{
+  "services": {
+    "ntfy": {
+      "container_name": "ntfy",
+      "image": "binwiederhier/ntfy",
+      "environment": [
+        "NTFY_BASE_URL=https://notifications.cosmos.local",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NTFY_UPSTREAM_BASE_URL=https://ntfy.sh",
+        "NTFY_BEHIND_PROXY=true"
+      ],
+      "labels": {
+        "cosmos-auto-update": "true",
+        "cosmos-force-network-secured": "true",
+        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/ntfy/icon.png",
+        "org.opencontainers.image.authors": "philipp.heckel@gmail.com",
+        "org.opencontainers.image.description": "Send push notifications to your phone or desktop using PUT/POST",
+        "org.opencontainers.image.documentation": "https://docs.ntfy.sh/",
+        "org.opencontainers.image.licenses": "Apache-2.0, GPL-2.0",
+        "org.opencontainers.image.source": "https://github.com/binwiederhier/ntfy",
+        "org.opencontainers.image.title": "ntfy",
+        "org.opencontainers.image.url": "https://ntfy.sh/",
+        "org.opencontainers.image.vendor": "Philipp C. Heckel"
+      },
+      "ports": [],
+      "volumes": [],
+      "networks": {
+        "cosmos-ntfy-default": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "command": "serve",
+      "entrypoint": "ntfy",
+      "runtime": "runc",
+      "working_dir": "/",
+      "network_mode": "cosmos-ntfy-default",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
