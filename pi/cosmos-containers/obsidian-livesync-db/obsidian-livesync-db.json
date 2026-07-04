@@ -1,0 +1,54 @@
+{
+  "services": {
+    "obsidian-livesync-db": {
+      "container_name": "obsidian-livesync-db",
+      "image": "couchdb:latest",
+      "environment": [
+        "COUCHDB_USER=<your_couchdb_user>",
+        "COUCHDB_PASSWORD=<your_couchdb_password>",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "GPG_COUCH_KEY=390EF70BB1EA12B2773962950EE62FB37A00258D",
+        "COUCHDB_VERSION=3.5.1"
+      ],
+      "labels": {
+        "cosmos-auto-update": "true",
+        "cosmos-force-network-mode": "cosmos-obsidian-livesync-db-default",
+        "maintainer": "CouchDB Developers dev@couchdb.apache.org"
+      },
+      "ports": [
+        "0.0.0.0:5984:5984/tcp",
+        ":::5984:5984/tcp"
+      ],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "obsidian-sync-data",
+          "Target": "/opt/couchdb/data"
+        },
+        {
+          "Type": "volume",
+          "Source": "obsidian-sync-locald",
+          "Target": "/opt/couchdb/etc/local.d"
+        }
+      ],
+      "networks": {
+        "cosmos-obsidian-livesync-db-default": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "command": "/opt/couchdb/bin/couchdb",
+      "entrypoint": "tini -- /docker-entrypoint.sh",
+      "runtime": "runc",
+      "network_mode": "cosmos-obsidian-livesync-db-default",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
