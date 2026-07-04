@@ -1,0 +1,67 @@
+{
+  "services": {
+    "pihole": {
+      "container_name": "pihole",
+      "image": "pihole/pihole:latest",
+      "environment": [
+        "TZ=<your_timezone_region/city>",
+        "FTLCONF_webserver_api_password=<your_pihole_web_password>",
+        "FTLCONF_dns_listeningMode=LOCAL",
+        "FTLCONF_LOCAL_IPV4=<your_pi_lan_ip>",
+        "FTLCONF_webserver_port=8081,8441s",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "DNSMASQ_USER=pihole",
+        "FTL_CMD=no-daemon"
+      ],
+      "labels": {
+        "org.opencontainers.image.created": "2026-02-17T20:50:03.160Z",
+        "org.opencontainers.image.description": "The official Pi-hole Docker image from pi-hole.net",
+        "org.opencontainers.image.licenses": "NOASSERTION",
+        "org.opencontainers.image.revision": "b890f5db95e837f8b94f954a25f2ea3d2dc54765",
+        "org.opencontainers.image.source": "https://github.com/pi-hole/docker-pi-hole",
+        "org.opencontainers.image.title": "docker-pi-hole",
+        "org.opencontainers.image.url": "https://github.com/pi-hole/docker-pi-hole",
+        "org.opencontainers.image.version": "2026.02.0"
+      },
+      "ports": [],
+      "volumes": [
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/pi-hole/dnsmasq",
+          "Target": "/etc/dnsmasq.d"
+        },
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/pi-hole/pihole",
+          "Target": "/etc/pihole"
+        }
+      ],
+      "networks": {
+        "host": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "entrypoint": "start.sh",
+      "runtime": "runc",
+      "working_dir": "/",
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "dig -p $(pihole-FTL --config dns.port) +short +norecurse +retry=0 @127.0.0.1 pi.hole || exit 1"
+        ],
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      },
+      "cap_add": [
+        "NET_ADMIN",
+        "SYS_TIME",
+        "SYS_NICE"
+      ],
+      "network_mode": "host"
+    }
+  }
+}
