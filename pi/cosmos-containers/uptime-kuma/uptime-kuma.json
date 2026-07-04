@@ -1,0 +1,52 @@
+{
+  "services": {
+    "Uptime-Kuma": {
+      "container_name": "Uptime-Kuma",
+      "image": "louislam/uptime-kuma:1",
+      "environment": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=18.20.3",
+        "YARN_VERSION=1.22.19",
+        "UPTIME_KUMA_IS_CONTAINER=1"
+      ],
+      "labels": {
+        "cosmos-auto-update": "true",
+        "cosmos-force-network-secured": "true",
+        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/UptimeKuma/icon.png",
+        "cosmos-stack": "Uptime-Kuma",
+        "cosmos-stack-main": "Uptime-Kuma"
+      },
+      "ports": [],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "Uptime-Kuma-config",
+          "Target": "/app/data"
+        }
+      ],
+      "networks": {
+        "cosmos-Uptime-Kuma-default": {},
+        "cosmos-ntfy-default": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "command": "node server/server.js",
+      "entrypoint": "/usr/bin/dumb-init -- extra/entrypoint.sh",
+      "runtime": "runc",
+      "working_dir": "/app",
+      "network_mode": "cosmos-Uptime-Kuma-default",
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "extra/healthcheck"
+        ],
+        "interval": 60,
+        "timeout": 30,
+        "retries": 5,
+        "start_period": 180
+      }
+    }
+  }
+}
