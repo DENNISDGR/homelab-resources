@@ -1,0 +1,82 @@
+{
+  "services": {
+    "thunderbird": {
+      "container_name": "thunderbird",
+      "image": "lscr.io/linuxserver/thunderbird:latest",
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=<your_timezone_region/city>",
+        "CUSTOM_USER=<your_web_ui_username>",
+        "PASSWORD=<your_web_ui_password>",
+        "PATH=/lsiopy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "HOME=/config",
+        "LANGUAGE=en_US.UTF-8",
+        "LANG=en_US.UTF-8",
+        "TERM=xterm",
+        "S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0",
+        "S6_VERBOSITY=1",
+        "S6_STAGE2_HOOK=/docker-mods",
+        "VIRTUAL_ENV=/lsiopy",
+        "DISPLAY=:1",
+        "PERL5LIB=/usr/local/bin",
+        "START_DOCKER=true",
+        "PULSE_RUNTIME_PATH=/defaults",
+        "SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so",
+        "NVIDIA_DRIVER_CAPABILITIES=all",
+        "DISABLE_ZINK=false",
+        "DISABLE_DRI3=false",
+        "TITLE=Thunderbird",
+        "LSIO_FIRST_PARTY=true",
+        "SELKIES_ENCODER=x264enc,jpeg",
+        "NO_GAMEPAD=true",
+        "PIXELFLUX_WAYLAND=true"
+      ],
+      "labels": {
+        "build_version": "Linuxserver.io version:- 1140.9.0build1-0ubuntu0.24.04.1mt1-ls23 Build-date:- 2026-03-31T15:52:17+00:00",
+        "cosmos-force-network-mode": "Webmail",
+        "maintainer": "thelamer",
+        "org.opencontainers.image.authors": "linuxserver.io",
+        "org.opencontainers.image.created": "2026-03-31T15:52:17+00:00",
+        "org.opencontainers.image.description": "[Thunderbird](https://www.thunderbird.net/) is a free and open-source personal information manager primarily used as an e-mail client with a calendar and contactbook, as well as an RSS feed reader, chat client, and news client.",
+        "org.opencontainers.image.documentation": "https://docs.linuxserver.io/images/docker-thunderbird",
+        "org.opencontainers.image.licenses": "GPL-3.0-only",
+        "org.opencontainers.image.ref.name": "0be26accfd2be21697ee46d96ededc9aada4b1b8",
+        "org.opencontainers.image.revision": "0be26accfd2be21697ee46d96ededc9aada4b1b8",
+        "org.opencontainers.image.source": "https://github.com/linuxserver/docker-thunderbird",
+        "org.opencontainers.image.title": "Thunderbird",
+        "org.opencontainers.image.url": "https://github.com/linuxserver/docker-thunderbird/packages",
+        "org.opencontainers.image.vendor": "linuxserver.io",
+        "org.opencontainers.image.version": "1140.9.0build1-0ubuntu0.24.04.1mt1-ls23"
+      },
+      "ports": [],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "thunderbird",
+          "Target": "/config"
+        }
+      ],
+      "networks": {
+        "Webmail": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "tty": true,
+      "stdin_open": true,
+      "entrypoint": "/init",
+      "runtime": "runc",
+      "working_dir": "/",
+      "network_mode": "Webmail",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
