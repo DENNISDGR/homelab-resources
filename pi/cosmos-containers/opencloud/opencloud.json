@@ -1,0 +1,63 @@
+{
+  "services": {
+    "opencloud": {
+      "container_name": "opencloud",
+      "image": "opencloudeu/opencloud-rolling:latest",
+      "environment": [
+        "OC_INSECURE=true",
+        "PROXY_HTTP_ADDR=0.0.0.0:9200",
+        "OC_URL=https://drive.cosmos.local",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "labels": {
+        "cosmos-force-network-mode": "cosmos-opencloud-default",
+        "cosmos-icon": "/cosmos/api/image/servapp-opencloud-tNBOLP.png",
+        "maintainer": "openCloud GmbH <devops@opencloud.eu>",
+        "org.opencontainers.image.authors": "OpenCloud GmbH",
+        "org.opencontainers.image.created": "2025-12-01T09:36:46Z",
+        "org.opencontainers.image.description": "OpenCloud is a modern file-sync and share platform",
+        "org.opencontainers.image.documentation": "https://github.com/opencloud-eu/opencloud",
+        "org.opencontainers.image.licenses": "Apache-2.0",
+        "org.opencontainers.image.revision": "986545da524b1fddba5d2cfb0c1264f8806a8b82",
+        "org.opencontainers.image.source": "https://github.com/opencloud-eu/opencloud.git",
+        "org.opencontainers.image.title": "OpenCloud",
+        "org.opencontainers.image.url": "https://github.com/opencloud-eu/opencloud",
+        "org.opencontainers.image.vendor": "OpenCloud GmbH",
+        "org.opencontainers.image.version": "4.0.0"
+      },
+      "ports": [],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "opencloud-data",
+          "Target": "/var/lib/opencloud"
+        },
+        {
+          "Type": "volume",
+          "Source": "opencloud-config",
+          "Target": "/etc/opencloud"
+        }
+      ],
+      "networks": {
+        "cosmos-opencloud-default": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "command": "server",
+      "entrypoint": "/usr/bin/opencloud",
+      "runtime": "runc",
+      "working_dir": "/var/lib/opencloud",
+      "user": "1000",
+      "network_mode": "cosmos-opencloud-default",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
