@@ -1,0 +1,85 @@
+{
+  "services": {
+    "crafty_container": {
+      "container_name": "crafty_container",
+      "image": "registry.gitlab.com/crafty-controller/crafty-4:latest",
+      "environment": [
+        "TZ=<your_timezone_region/city>",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "DEBIAN_FRONTEND=noninteractive",
+        "LOG4J_FORMAT_MSG_NO_LOOKUPS=true"
+      ],
+      "labels": {
+        "cosmos-auto-update": "true",
+        "cosmos-force-network-mode": "crafty",
+        "cosmos-force-network-secured": "false",
+        "cosmos-icon": "/cosmos/api/image/servapp-crafty_container-4vfbFS.png",
+        "maintainer": "Zedifus <https://gitlab.com/zedifus>",
+        "org.opencontainers.image.created": "2025-01-20T15:49:02Z",
+        "org.opencontainers.image.description": "A Game Server Control Panel / Launcher",
+        "org.opencontainers.image.documentation": "https://docs.craftycontrol.com",
+        "org.opencontainers.image.licenses": "GPL-3.0",
+        "org.opencontainers.image.ref.name": "ubuntu",
+        "org.opencontainers.image.revision": "ea59f0d5eceb86f790e54a826d1e947e970d3f9d",
+        "org.opencontainers.image.source": "https://gitlab.com/crafty-controller/crafty-4",
+        "org.opencontainers.image.title": "Crafty Controller",
+        "org.opencontainers.image.url": "https://craftycontrol.com/",
+        "org.opencontainers.image.vendor": "Arcadia Technology, LLC.",
+        "org.opencontainers.image.version": "4.4.7"
+      },
+      "ports": [
+        "0.0.0.0:25565:25565/tcp",
+        ":::25565:25565/tcp"
+      ],
+      "volumes": [
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/crafty/backups",
+          "Target": "/crafty/backups"
+        },
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/crafty/logs",
+          "Target": "/crafty/logs"
+        },
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/crafty/servers",
+          "Target": "/crafty/servers"
+        },
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/crafty/config",
+          "Target": "/crafty/app/config"
+        },
+        {
+          "Type": "bind",
+          "Source": "/DATA/appdata/crafty/import",
+          "Target": "/crafty/import"
+        }
+      ],
+      "networks": {
+        "crafty": {}
+      },
+      "routes": null,
+      "restart": "always",
+      "devices": null,
+      "expose": [],
+      "tty": true,
+      "stdin_open": true,
+      "command": "-d -i",
+      "entrypoint": "/crafty/docker_launcher.sh",
+      "runtime": "runc",
+      "working_dir": "/crafty",
+      "user": "root",
+      "network_mode": "crafty",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
