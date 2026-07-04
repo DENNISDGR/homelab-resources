@@ -1,0 +1,74 @@
+{
+  "services": {
+    "stremio": {
+      "container_name": "stremio",
+      "image": "tsaridas/stremio-docker:latest",
+      "environment": [
+        "NO_CORS=1",
+        "AUTO_SERVER_URL=1",
+        "IPADDRESS=stremio.cosmos.local",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=20.13.1",
+        "YARN_VERSION=1.22.19",
+        "FFMPEG_BIN=",
+        "FFPROBE_BIN=",
+        "WEBUI_LOCATION=",
+        "WEBUI_INTERNAL_PORT=",
+        "OPEN=",
+        "HLS_DEBUG=",
+        "DEBUG=",
+        "DEBUG_MIME=",
+        "DEBUG_FD=",
+        "FFMPEG_DEBUG=",
+        "FFSPLIT_DEBUG=",
+        "NODE_DEBUG=",
+        "NODE_ENV=production",
+        "HTTPS_CERT_ENDPOINT=",
+        "DISABLE_CACHING=",
+        "READABLE_STREAM=",
+        "APP_PATH=",
+        "CASTING_DISABLED=",
+        "DOMAIN=",
+        "CERT_FILE=",
+        "SERVER_URL="
+      ],
+      "labels": {
+        "cosmos-auto-update": "true",
+        "cosmos-force-network-mode": "Stremio",
+        "org.opencontainers.image.description": "Stremio Web Player and Server",
+        "org.opencontainers.image.licenses": "MIT",
+        "org.opencontainers.image.source": "https://github.com/tsaridas/stremio-docker",
+        "version": ""
+      },
+      "ports": [
+        "0.0.0.0:8080:8080/tcp",
+        ":::8080:8080/tcp"
+      ],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "153e39eae48143345d331b0ae45b0601f35b0b4ef7fc11e3028504c3a5ecd891",
+          "Target": "/root/.stremio-server"
+        }
+      ],
+      "networks": {
+        "Stremio": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "command": "./stremio-web-service-run.sh",
+      "runtime": "runc",
+      "working_dir": "/srv/stremio-server",
+      "network_mode": "Stremio",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
