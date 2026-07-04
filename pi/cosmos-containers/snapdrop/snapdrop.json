@@ -1,0 +1,66 @@
+{
+  "services": {
+    "snapdrop": {
+      "container_name": "snapdrop",
+      "image": "linuxserver/snapdrop:version-eac78009",
+      "environment": [
+        "PGID=1000",
+        "PUID=1000",
+        "PATH=/lsiopy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PS1=$(whoami)@$(hostname):$(pwd)\\$ ",
+        "HOME=/app",
+        "TERM=xterm",
+        "S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0",
+        "S6_VERBOSITY=1",
+        "S6_STAGE2_HOOK=/docker-mods",
+        "VIRTUAL_ENV=/lsiopy",
+        "LSIO_FIRST_PARTY=true",
+        "NODE_ENV=production"
+      ],
+      "labels": {
+        "build_version": "Linuxserver.io version:- eac78009-ls151 Build-date:- 2024-07-18T06:49:25+00:00",
+        "cosmos-auto-update": "true",
+        "maintainer": "alex-phillips",
+        "org.opencontainers.image.authors": "linuxserver.io",
+        "org.opencontainers.image.description": "[Snapdrop](https://github.com/RobinLinus/snapdrop) A local file sharing in your browser. Inspired by Apple's Airdrop.",
+        "org.opencontainers.image.documentation": "https://docs.linuxserver.io/images/docker-snapdrop",
+        "org.opencontainers.image.licenses": "GPL-3.0-only",
+        "org.opencontainers.image.ref.name": "87f6ab3ca60d818b97e426b0853225102e9a2ab4",
+        "org.opencontainers.image.revision": "87f6ab3ca60d818b97e426b0853225102e9a2ab4",
+        "org.opencontainers.image.source": "https://github.com/linuxserver/docker-snapdrop",
+        "org.opencontainers.image.title": "Snapdrop",
+        "org.opencontainers.image.url": "https://github.com/linuxserver/docker-snapdrop/packages",
+        "org.opencontainers.image.vendor": "linuxserver.io",
+        "org.opencontainers.image.version": "eac78009-ls151"
+      },
+      "ports": [],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "snapdrop-data",
+          "Target": "/config"
+        }
+      ],
+      "networks": {
+        "bridge": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "entrypoint": "/init",
+      "runtime": "runc",
+      "working_dir": "/",
+      "hostname": "snapdrop",
+      "mac_address": "<container_mac_address>",
+      "network_mode": "bridge",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      }
+    }
+  }
+}
