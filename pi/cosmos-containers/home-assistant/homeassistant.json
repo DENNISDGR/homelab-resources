@@ -1,0 +1,85 @@
+{
+  "services": {
+    "Home-Assistant": {
+      "container_name": "Home-Assistant",
+      "image": "lscr.io/linuxserver/homeassistant:latest",
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "PROXY_HOSTNAME=0.0.0.0/0",
+        "PATH=/lsiopy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PS1=$(whoami)@$(hostname):$(pwd)\\$ ",
+        "HOME=/config",
+        "TERM=xterm",
+        "S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0",
+        "S6_VERBOSITY=1",
+        "S6_STAGE2_HOOK=/docker-mods",
+        "VIRTUAL_ENV=/lsiopy",
+        "LSIO_FIRST_PARTY=true",
+        "S6_SERVICES_GRACETIME=240000",
+        "UV_SYSTEM_PYTHON=true",
+        "UV_NO_CACHE=true",
+        "UV_EXTRA_INDEX_URL=https://wheels.home-assistant.io/musllinux-index/",
+        "ATTACHED_DEVICES_PERMS=/dev/ttyACM* /dev/ttyUSB* -type c"
+      ],
+      "labels": {
+        "build_version": "Linuxserver.io version:- 2025.2.0-ls73 Build-date:- 2025-02-05T20:01:59+00:00",
+        "cosmos-auto-update": "true",
+        "cosmos-force-network-mode": "cosmos-Home-Assistant-default",
+        "cosmos-force-network-secured": "true",
+        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/HomeAssistant/icon.png",
+        "maintainer": "saarg, roxedus",
+        "org.opencontainers.image.authors": "linuxserver.io",
+        "org.opencontainers.image.created": "2025-02-05T20:01:59+00:00",
+        "org.opencontainers.image.description": "[Home Assistant Core](https://www.home-assistant.io/) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server",
+        "org.opencontainers.image.documentation": "https://docs.linuxserver.io/images/docker-homeassistant",
+        "org.opencontainers.image.licenses": "GPL-3.0-only",
+        "org.opencontainers.image.ref.name": "52b8aa26c8b176c364cdec0c1f644f48c27c3328",
+        "org.opencontainers.image.revision": "52b8aa26c8b176c364cdec0c1f644f48c27c3328",
+        "org.opencontainers.image.source": "https://github.com/linuxserver/docker-homeassistant",
+        "org.opencontainers.image.title": "Homeassistant",
+        "org.opencontainers.image.url": "https://github.com/linuxserver/docker-homeassistant/packages",
+        "org.opencontainers.image.vendor": "linuxserver.io",
+        "org.opencontainers.image.version": "2025.2.0-ls73"
+      },
+      "ports": [],
+      "volumes": [
+        {
+          "Type": "volume",
+          "Source": "Home-Assistant-config",
+          "Target": "/config"
+        },
+        {
+          "Type": "bind",
+          "Source": "/run/dbus",
+          "Target": "/run/dbus"
+        }
+      ],
+      "networks": {
+        "cosmos-Home-Assistant-default": {}
+      },
+      "routes": null,
+      "restart": "unless-stopped",
+      "devices": null,
+      "expose": [],
+      "entrypoint": "/init",
+      "runtime": "runc",
+      "working_dir": "/",
+      "network_mode": "cosmos-Home-Assistant-default",
+      "healthcheck": {
+        "test": null,
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      },
+      "dns": [
+        "<pi-hole_ip>",
+        "1.1.1.1"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ]
+    }
+  }
+}
