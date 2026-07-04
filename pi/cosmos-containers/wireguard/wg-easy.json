@@ -1,0 +1,60 @@
+{
+  "services": {
+    "wg-easy": {
+      "container_name": "wg-easy",
+      "image": "ghcr.io/wg-easy/wg-easy:latest",
+      "environment": [
+        "PASSWORD_HASH=<your_bcrypt_password_hash>",
+        "WG_DEFAULT_DNS=<your_dns_server_ip>",
+        "WG_HOST=<your_ddns_hostname>",
+        "WG_PORT=51820",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=20.17.0",
+        "YARN_VERSION=1.22.22",
+        "DEBUG=Server,WireGuard"
+      ],
+      "labels": {
+        "cosmos-icon": "/cosmos/api/image/servapp-wg-easy-wVtzZF.png"
+      },
+      "ports": [
+        "0.0.0.0:51820:51820/udp",
+        ":::51820:51820/udp"
+      ],
+      "volumes": [],
+      "networks": {
+        "bridge": {}
+      },
+      "routes": null,
+      "restart": "always",
+      "devices": null,
+      "expose": [],
+      "tty": true,
+      "stdin_open": true,
+      "command": "/usr/bin/dumb-init node server.js",
+      "entrypoint": "docker-entrypoint.sh",
+      "runtime": "runc",
+      "working_dir": "/app",
+      "hostname": "wg-easy",
+      "mac_address": "<container_mac_address>",
+      "network_mode": "bridge",
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "/usr/bin/timeout 5s /bin/sh -c \"/usr/bin/wg show | /bin/grep -q interface || exit 1\" --interval=1m --timeout=5s --retries=3"
+        ],
+        "interval": 0,
+        "timeout": 0,
+        "retries": 0,
+        "start_period": 0
+      },
+      "sysctls": {
+        "net.ipv4.conf.all.src_valid_mark": "1",
+        "net.ipv4.ip_forward": "1"
+      },
+      "cap_add": [
+        "NET_ADMIN",
+        "SYS_MODULE"
+      ]
+    }
+  }
+}
