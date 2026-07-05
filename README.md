@@ -4,8 +4,8 @@ Documentation, configurations, and lessons learned from my self-hosted homelab. 
 
 This repo serves three purposes: a personal reference so nothing lives only in my head, a resource for the self-hosting community, and a record of the architecture and operational decisions behind the lab.
 
-> **Status:** Repository under construction. Folder structure and per-service configs are being migrated in. See [Roadmap](#roadmap) for where the lab itself is heading.
-
+> [!WARNING]
+> 🚧 **Under construction!** A lot of stuff will be missing or broken for the time being. Rest assured, I'll keep updating. See the [Roadmap](#roadmap) for where the lab itself is heading.
 ---
 
 ## Architecture at a Glance
