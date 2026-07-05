@@ -59,7 +59,7 @@ Internet ──▶ DDNS name ──▶ Router (single forwarded WG port) ──�
 - The router forwards exactly one UDP port to the Pi's WireGuard container
 - VPN clients are handed the LAN DNS server, so filtering and `*.cosmos.local` work on the road
 
-> Roadmap: replace this with Headscale on the Oracle VPS — see the [docs README](../README.md#roadmap).
+> Roadmap: replace this with Headscale on the Oracle VPS — see the [root README](../README.md#roadmap).
 
 ## netconsole
 
